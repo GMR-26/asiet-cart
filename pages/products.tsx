@@ -1,36 +1,23 @@
 // pages/products.tsx
-import ProductCard from '@/components/ProductCard';
+import React from 'react';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
+import ProductCard from '@/components/ProductCard';
 
 const mockProducts = [
-  {
-    name: 'Lab Fair Record',
-    price: 65,
-    stock_quantity: 12,
-    image_url: '/images/lab_fair.jpg',
-    description: 'A4 size, 120 pages. Perfect for physics and chemistry lab reports.',
-  },
-  {
-    name: 'Lab Fair Record with Graph',
-    price: 65,
-    stock_quantity: 0,
-    image_url: '/images/lab_fair_graph.jpg',
-    description: 'Includes 20 graph sheets. Ideal for detailed experimental data.',
-  },
-  {
-    name: 'Lab Rough Record',
-    price: 35,
-    stock_quantity: 25,
-    image_url: '/images/lab_rough.jpg',
-    description: 'A handy A5 size record for jotting down observations and rough work.',
-  },
-  {
-    name: 'Pen (Blue Ink)',
-    price: 10,
-    stock_quantity: 100,
-    image_url: '/images/pen.jpg',
-    description: "Smooth-flowing blue ink pen. A student's best friend.",
-  },
+  { name: 'Lab Record without graph', price: 65, stock_quantity: 10, image_url: '/images/lab_record_no_graph.jpg', description: 'A4 size, 120 pages.' },
+  { name: 'Lab Record with graph', price: 65, stock_quantity: 10, image_url: '/images/lab_record_graph.jpg', description: 'A4 size with graph sheets.' },
+  { name: 'Rough Record with graph', price: 35, stock_quantity: 10, image_url: '/images/rough_record_graph.jpg', description: 'Handy A5 with graph.' },
+  { name: 'Rough Record without graph', price: 35, stock_quantity: 10, image_url: '/images/rough_record_no_graph.jpg', description: 'Handy A5 without graph.' },
+  { name: 'Tutorial', price: 25, stock_quantity: 10, image_url: '/images/tutorial.jpg', description: 'Reference guide.' },
+  { name: 'Note Book', price: 45, stock_quantity: 10, image_url: '/images/notebook.jpg', description: 'Durable hardcover notebook.' },
+  { name: 'Pinpoint (Blue, Black)', price: 10, stock_quantity: 50, image_url: '/images/pinpoint_pen.jpg', description: 'Fine tip for precision.' },
+  { name: 'Scale Small', price: 5, stock_quantity: 20, image_url: '/images/scale_small.jpg', description: '15cm small scale.' },
+  { name: 'Pencil, HB, 2HB', price: 10, stock_quantity: 40, image_url: '/images/pencil.jpg', description: 'High-quality pencils.' },
+  { name: 'Compass', price: 20, stock_quantity: 15, image_url: '/images/compass.jpg', description: 'Drawing compass.' },
+  { name: 'Protractor', price: 10, stock_quantity: 15, image_url: '/images/protractor.jpg', description: '180° protractor.' },
+  { name: 'Eraser', price: 3, stock_quantity: 40, image_url: '/images/eraser.jpg', description: 'Soft eraser.' },
+  { name: 'Sharpener', price: 5, stock_quantity: 30, image_url: '/images/sharpener.jpg', description: 'Durable sharpener.' },
 ];
 
 const containerVariants = {
@@ -46,30 +33,47 @@ const cardVariants = {
   visible: { y: 0, opacity: 1 },
 };
 
-const ProductsPage = () => {
+function ProductsPage() {
   return (
-    <main className="p-6">
-      <h1 className="text-4xl font-bold text-red-500 text-center mb-10">
-        Tailwind is working
-      </h1>
-      <motion.div
-        className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        {mockProducts.map((product) => (
-          <motion.div
-            key={product.name}
-            variants={cardVariants}
-            className="flex justify-center"
-          >
-            <ProductCard {...product} />
-          </motion.div>
-        ))}
-      </motion.div>
-    </main>
+    <>
+      <Head>
+        {/* Google Font */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+
+      <main className="p-6 bg-white min-h-screen">
+        <h1
+          className="text-4xl font-bold text-center mb-10"
+          style={{
+            fontFamily: "'Poppins', sans-serif",
+            color: '#000000',
+          }}
+        >
+          ASIET-CART
+        </h1>
+
+        <motion.div
+          className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {mockProducts.map((product) => (
+            <motion.div
+              key={product.name}
+              variants={cardVariants}
+              className="flex justify-center"
+            >
+              <ProductCard {...product} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </main>
+    </>
   );
-};
+}
 
 export default ProductsPage;
