@@ -2,6 +2,8 @@
 import React from 'react';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import Image from 'next/image';
 import ProductCard from '@/components/ProductCard';
 
 const mockProducts = [
@@ -37,7 +39,6 @@ function ProductsPage() {
   return (
     <>
       <Head>
-        {/* Google Font */}
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap"
           rel="stylesheet"
@@ -45,15 +46,36 @@ function ProductsPage() {
       </Head>
 
       <main className="p-6 bg-white min-h-screen">
-        <h1
-          className="text-4xl font-bold text-center mb-10"
-          style={{
-            fontFamily: "'Poppins', sans-serif",
-            color: '#000000',
-          }}
-        >
-          ASIET-CART
+        
+        {/* Top-Center Title */}
+        <h1 className="text-3xl font-bold text-center text-blue-700 mb-4">
+          ASIET CART
         </h1>
+
+        {/* Top Navigation Bar */}
+        <div className="flex justify-between items-center mb-6">
+          <div className="flex items-center">
+            <Image
+              src="/images/asiet_logo.png"
+              alt="ASIET Logo"
+              width={180}
+              height={60}
+              priority
+            />
+          </div>
+          <div className="space-x-4">
+            <Link href="/login">
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500">
+                Log In
+              </button>
+            </Link>
+            <Link href="/signup">
+              <button className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500">
+                Sign Up
+              </button>
+            </Link>
+          </div>
+        </div>
 
         <motion.div
           className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
@@ -77,3 +99,5 @@ function ProductsPage() {
 }
 
 export default ProductsPage;
+
+
